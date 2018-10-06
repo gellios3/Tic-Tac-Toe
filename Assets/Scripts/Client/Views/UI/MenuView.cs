@@ -17,6 +17,7 @@ namespace Client.Views.UI
         [SerializeField] private GameObject _circleWinText;
 
         [SerializeField] private Button _startGame;
+        [SerializeField] private Button _startServer;
         [SerializeField] private Button _quitGame;
 
         /// <summary>
@@ -39,6 +40,12 @@ namespace Client.Views.UI
 
         protected override void Start()
         {
+            _startServer.onClick.AddListener(() =>
+            {
+                _content.SetActive(false);
+                SceneManager.LoadSceneAsync("ServerView", LoadSceneMode.Additive);
+            });
+            
             _startGame.onClick.AddListener(() =>
             {
                 _content.SetActive(false);
