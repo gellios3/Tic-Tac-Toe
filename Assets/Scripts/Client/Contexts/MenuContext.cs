@@ -1,4 +1,7 @@
+using Client.Commands.Multiplayer;
+using Client.Services.Multiplayer;
 using Client.Signals;
+using Client.Signals.Multiplayer;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
@@ -56,13 +59,14 @@ namespace Client.Contexts
         {
             // init Signals
             injectionBinder.Bind<GameOverSignal>().ToSingleton().CrossContext();
-            
+
             // Init commands
 
             // Init services
             injectionBinder.Bind<GameService>().ToSingleton().CrossContext();
             injectionBinder.Bind<PlayerService>().ToSingleton().CrossContext();
-            
+            injectionBinder.Bind<NetworkPlayerService>().ToSingleton().CrossContext();
+
             // Init mediators
         }
     }

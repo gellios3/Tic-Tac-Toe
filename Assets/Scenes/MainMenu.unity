@@ -1186,6 +1186,7 @@ MonoBehaviour:
   _welcomeText: {fileID: 621422239}
   _cubeWinText: {fileID: 1815026367}
   _circleWinText: {fileID: 2089412350}
+  _login: {fileID: 1818781825}
   _startGame: {fileID: 236364700}
   _startServer: {fileID: 499205844}
   _quitGame: {fileID: 1016674898}

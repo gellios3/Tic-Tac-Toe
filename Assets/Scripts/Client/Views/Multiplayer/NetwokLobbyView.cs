@@ -24,13 +24,13 @@ namespace Client.Views.Multiplayer
         [SerializeField] private StatusView _serverStatus;
 
         /// <summary>
-        /// Start game
+        ///  Status view
         /// </summary>
-        [SerializeField] private Button _startGameBtn;
+        [SerializeField] private GameObject _statusItem;
 
         private readonly List<GameObject> _statusViews = new List<GameObject>();
 
-        private void Awake()
+        protected override void Start()
         {
             StartCoroutine(SpawnLoop());
         }
@@ -52,16 +52,7 @@ namespace Client.Views.Multiplayer
         }
 
         /// <summary>
-        /// Get start game btn
-        /// </summary>
-        /// <returns></returns>
-        public Button GetStartGameBtn()
-        {
-            return _startGameBtn;
-        }
-
-        /// <summary>
-        /// 
+        /// Show players list
         /// </summary>
         /// <param name="players"></param>
         public void ShowPlayersList(IEnumerable<MyNetworkPlayer> players)
@@ -69,18 +60,10 @@ namespace Client.Views.Multiplayer
             RefreshStatusList();
             foreach (var item in players)
             {
-                var statusView = (GameObject) Instantiate(
-                    Resources.Load("Prefabs/StatusItem", typeof(GameObject)), new Vector2(), Quaternion.identity,
-                    transform
-                );
-                var statusItemView = statusView.GetComponent<StatusItemView>();
+                var statusView = Instantiate(_statusItem, new Vector2(), Quaternion.identity, transform);
+                var statusItemView = _statusItem.GetComponent<StatusItemView>();
                 statusItemView.InitPlayer(item);
                 _statusViews.Add(statusView);
-            }
-
-            if (_statusViews.Count > 1)
-            {
-                _startGameBtn.interactable = true;
             }
         }
 

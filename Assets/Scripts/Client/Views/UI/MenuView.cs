@@ -1,4 +1,7 @@
-﻿using Client.Signals;
+﻿using Client.Services.Multiplayer;
+using Client.Signals;
+using Client.Signals.Multiplayer;
+using Models;
 using strange.extensions.mediation.impl;
 using Services;
 using UnityEngine;
@@ -15,6 +18,8 @@ namespace Client.Views.UI
         [SerializeField] private GameObject _welcomeText;
         [SerializeField] private GameObject _cubeWinText;
         [SerializeField] private GameObject _circleWinText;
+
+        [SerializeField] private InputField _login;
 
         [SerializeField] private Button _startGame;
         [SerializeField] private Button _startServer;
@@ -36,18 +41,32 @@ namespace Client.Views.UI
         /// Game service
         /// </summary>
         [Inject]
-        public GameOverSignal GameOverSignal { get; set; }
+        public GameOverSignal GameOverSignal { get; set; } 
+        
+        /// <summary>
+        /// Game service
+        /// </summary>
+        [Inject]
+        public NetworkPlayerService NetworkPlayerService { get; set; }
 
         protected override void Start()
         {
             _startServer.onClick.AddListener(() =>
             {
                 _content.SetActive(false);
+                // Load lobby scene
                 SceneManager.LoadSceneAsync("ServerView", LoadSceneMode.Additive);
             });
-            
+
             _startGame.onClick.AddListener(() =>
             {
+                var playerName = _login.text;
+                if (playerName.Length <= 0) return;
+                NetworkPlayerService.NetworkLobbyPlayer = new MyNetworkPlayer
+                {
+                    Id = Random.Range(0, 1000),
+                    Name = playerName
+                };
                 _content.SetActive(false);
                 SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
             });

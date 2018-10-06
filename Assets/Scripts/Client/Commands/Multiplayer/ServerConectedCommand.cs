@@ -1,6 +1,7 @@
 ﻿using Client.Services.Multiplayer;
 using Models.Multiplayer.Messages;
 using strange.extensions.command.impl;
+using UnityEngine;
 using MsgStruct = Models.MsgStruct;
 
 namespace Client.Commands.Multiplayer

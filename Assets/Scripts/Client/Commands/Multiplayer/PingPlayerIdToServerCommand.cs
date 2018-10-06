@@ -25,7 +25,6 @@ namespace Client.Commands.Multiplayer
         /// </summary>
         public override void Execute()
         {
-            Debug.Log("PingPlayerIdToServerCommand");
             ServerConnectorService.Send(MsgStruct.SendPlayerID, new PingPlayerMessage
             {
                 Id = NetworkPlayerService.NetworkLobbyPlayer.Id

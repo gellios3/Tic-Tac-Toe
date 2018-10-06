@@ -1,10 +1,10 @@
-﻿using Models;
-using strange.extensions.command.api;
+﻿using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
 using Server.Commands;
 using Server.Handlers;
+using Server.Mediators;
 using Server.Services;
 using Server.Signals;
 using Server.Views;
@@ -84,6 +84,7 @@ namespace Server.Contexts
 
             // Bind Views   
             mediationBinder.Bind<ServerView>().To<ServerViewMediator>();
+            mediationBinder.Bind<ChatView>().To<ChatViewMediator>();
         }
     }
 }

@@ -2,9 +2,10 @@
 using Client.Signals.Multiplayer;
 using Client.Views.Multiplayer;
 using Mediators;
-using UnityEngine.SceneManagement;
+using Models;
+using UnityEngine;
 
-namespace Client.Mediators.Multiplayer 
+namespace Client.Mediators.Multiplayer
 {
     public class NetworkLobbyMediator : TargetMediator<NetwokLobbyView>
     {
@@ -29,7 +30,6 @@ namespace Client.Mediators.Multiplayer
         /// </summary>
         public override void OnRegister()
         {
-            View.GetStartGameBtn().onClick.AddListener(() => { SceneManager.LoadScene("GameArena"); });
             ServerConnectedSignal.AddListener(() => { View.OnServerConnected(); });
             DisconnectedFromServerSignal.AddListener(() => { View.OnServerDisconnected(); });
             ShowLobbyPlayersSignal.AddListener(() => { View.ShowPlayersList(NetworkPlayerService.OnlinePlayers); });

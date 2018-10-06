@@ -3,8 +3,8 @@ using Client.Signals.Multiplayer;
 using Interfaces;
 using Models;
 using Models.Multiplayer.Messages;
+using UnityEngine;
 using UnityEngine.Networking;
-using MsgStruct = Models.Multiplayer.Messages.MsgStruct;
 
 namespace Client.Handlers
 {

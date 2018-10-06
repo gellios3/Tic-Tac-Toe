@@ -8,7 +8,6 @@ using Client.Signals;
 using Client.Signals.Multiplayer;
 using Client.Views.MainGame;
 using Client.Views.Multiplayer;
-using Handlers;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
@@ -87,7 +86,7 @@ namespace Client.Contexts
 
             // Init services
             injectionBinder.Bind<ServerConnectorService>().ToSingleton().CrossContext();
-            injectionBinder.Bind<MapService>().ToSingleton();
+            injectionBinder.Bind<MapService>().ToSingleton(); 
 
             // Init mediators
             mediationBinder.Bind<CollView>().To<CollMediator>();

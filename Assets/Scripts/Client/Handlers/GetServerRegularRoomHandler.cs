@@ -1,9 +1,10 @@
 using Client.Signals.Multiplayer;
 using Interfaces;
+using Models;
 using Models.Multiplayer.Messages;
 using UnityEngine.Networking;
 
-namespace Handlers
+namespace Client.Handlers
 {
     public class GetEnemyTurnHandler : IServerMessageHandler
     {

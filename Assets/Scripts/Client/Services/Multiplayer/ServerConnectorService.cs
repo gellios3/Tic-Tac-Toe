@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Client.Handlers;
 using Client.Signals.Multiplayer;
-using Handlers;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -54,7 +53,10 @@ namespace Client.Services.Multiplayer
         {
             _client = new NetworkClient();
             _client.Connect(url, port);
-            _client.RegisterHandler(MsgType.Connect, msg => { ServerConnectedSignal.Dispatch(); });
+            _client.RegisterHandler(MsgType.Connect, msg =>
+            {
+                ServerConnectedSignal.Dispatch();
+            });
             _client.RegisterHandler(MsgType.Disconnect, mas => { DisconnectedFromServerSignal.Dispatch(); });
             RegisterHandlers(new List<IServerMessageHandler>
             {
